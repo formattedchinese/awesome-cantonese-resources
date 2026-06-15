@@ -15,7 +15,7 @@ export const siteConfig = {
   description:
     "Discover apps, courses, media, dictionaries, and community projects for learning Cantonese — curated from the same open data as the Awesome Cantonese Resources list.",
   /** Temporary default until a real site URL is configured. */
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://everythingcantonese.org",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://cantonese.fyi",
   /** Set in production for correct absolute URLs in metadata. */
   metadataBase: optionalUrl(process.env.NEXT_PUBLIC_SITE_URL),
   /** Optional: full repo URL for footer / contributing links. */
