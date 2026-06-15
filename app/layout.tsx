@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
-
-import "./globals.css";
-
+import { GoogleAnalytics } from "@next/third-parties/google"
 import NextTopLoader from "nextjs-toploader";
-
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
+import "./globals.css";
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -43,6 +41,7 @@ export default function RootLayout({
           <SiteFooter />
         </ThemeProvider>
       </body>
+      <GoogleAnalytics gaId="G-8H5KVJPZGG" />
     </html>
   );
 }
