@@ -2663,5 +2663,18 @@
     "cost": "Free",
     "platforms": ["Web"],
     "features": ["Audio"]
+  },
+  {
+    "id": "cantonese-literature-spreadsheet",
+    "name": "Cantonese Literature Spreadsheet",
+    "category": "List",
+    "description": "Curated spreadsheet of colloquial Cantonese books, comics, articles, and podcasts.",
+    "url": "https://docs.google.com/spreadsheets/d/1Y2LuFDBaG94h1W9u1pMwlIJrXNCL2Mwmbe7v0UipPw4/edit?gid=0#gid=0",
+    "levels": ["Intermediate", "Advanced"],
+    "tags": ["reading", "colloquial", "directory", "literature"],
+    "related_ids": [],
+    "cost": "Free",
+    "platforms": ["GoogleDocs"],
+    "features": []
   }
 ]

@@ -401,6 +401,7 @@ Universities, private centres, and SCOLAR-funded vocational programmes for learn
 - **[Bilibili — Cantonese lyrics section (list)](https://space.bilibili.com/454869715/lists/102883?type=season)** — Season/list of Cantonese lyrics videos on the creator's Bilibili space.
 - **[Cantonese anime list (Firefly Anime)](https://fireflyanime.blogspot.com/)** — Blog list of anime available with Cantonese dubs.
 - **[Cantonese Captions index (Google Sheets)](https://docs.google.com/spreadsheets/d/1CmN8GPalrb45YFIPrWgh7GRYyoUhnizEOImY6kAW82w/edit#gid=396865486)** — Spreadsheet index linked from Cantonese Captions project.
+- **[Cantonese Literature Spreadsheet](https://docs.google.com/spreadsheets/d/1Y2LuFDBaG94h1W9u1pMwlIJrXNCL2Mwmbe7v0UipPw4/edit?gid=0#gid=0)** — Curated spreadsheet of colloquial Cantonese books, comics, articles, and podcasts.
 - **[DubDB — British Hong Kong dubs](https://dubdb.fandom.com/wiki/Category:British_Hong_Kong_dubs)** — Fandom wiki category for British Hong Kong era dubs.
 - **[DubDB — Cantonese-language dubs](https://dubdb.fandom.com/wiki/Category:Cantonese-language_dubs)** — Fandom wiki category indexing Cantonese dubs.
 - **[DubDB — Hong Kong dubs](https://dubdb.fandom.com/wiki/Category:Hong_Kong_dubs)** — Fandom wiki category for Hong Kong dubs.
