@@ -108,7 +108,7 @@ export function SiteFooter() {
                   Stats
                 </Link>
                 <Link
-                  href="#help"
+                  href="/#help"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Help us improve
