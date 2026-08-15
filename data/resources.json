@@ -2702,5 +2702,18 @@
     "cost": "Freemium",
     "platforms": ["Web", "iOS", "Android"],
     "features": ["Jyutping", "Audio", "Flashcards", "Example sentences"]
+  },
+  {
+    "id": "lyrics-decode",
+    "name": "Lyrics Decode",
+    "category": "Music",
+    "description": "Cantopop lyrics with Jyutping, English, and practice/challenge lyric quizzes.",
+    "url": "https://lyricsdecode.com/tags/cantopop",
+    "levels": ["Intermediate", "Advanced"],
+    "tags": ["lyrics", "jyutping", "songs", "cantopop"],
+    "related_ids": [],
+    "cost": "Free",
+    "platforms": ["Web"],
+    "features": ["Jyutping"]
   }
 ]

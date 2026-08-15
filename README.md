@@ -391,6 +391,7 @@ Universities, private centres, and SCOLAR-funded vocational programmes for learn
 
 - **[0243.hk](https://www.0243.hk/)** — A tool dedicated to Cantonese lyric writing based on the '0243' method that matches tonal pitch to musical notes.
 - **[Canto Jar](https://cantojar.com)** — Cantonese song lyrics, breakdowns, and learning posts.
+- **[Lyrics Decode](https://lyricsdecode.com/tags/cantopop)** — Cantopop lyrics with Jyutping, English, and practice/challenge lyric quizzes.
 
 <a id="category-languageexchange"></a>
 ## Language Exchange
