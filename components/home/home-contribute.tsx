@@ -1,5 +1,6 @@
 import { MessageSquarePlus, Bug, HelpCircle, Star } from "lucide-react";
 
+import { ContributeLink } from "@/components/analytics/contribute-link";
 import { siteConfig } from "@/lib/site-config";
 import {
   githubDiscussionsCategoryUrl,
@@ -31,6 +32,7 @@ export function HomeContribute() {
 
   const hasSuggestionsEmail = Boolean(siteConfig.suggestionsEmail);
   const hasSuggestionsForm = Boolean(siteConfig.suggestionsFormUrl);
+  const sourcePage = "/#help";
 
   return (
     <section
@@ -55,39 +57,63 @@ export function HomeContribute() {
         {/* Suggest a resource */}
         {suggestUrl ? (
           <Button asChild size="lg" className="rounded-2xl">
-            <a href={suggestUrl} target="_blank" rel="noopener noreferrer">
+            <ContributeLink
+              href={suggestUrl}
+              actionType="suggest_resource"
+              sourcePage={sourcePage}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <MessageSquarePlus className="mr-2 size-4" />
               Suggest a resource
-            </a>
+            </ContributeLink>
           </Button>
         ) : null}
 
         {/* Rate or review a resource */}
         {ratingsUrl ? (
           <Button asChild size="lg" variant="outline" className="rounded-2xl">
-            <a href={ratingsUrl} target="_blank" rel="noopener noreferrer">
+            <ContributeLink
+              href={ratingsUrl}
+              actionType="rate_review"
+              sourcePage={sourcePage}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Star className="mr-2 size-4" />
               Rate or review a resource
-            </a>
+            </ContributeLink>
           </Button>
         ) : null}
 
         {/* Report a bug */}
         {issueUrl ? (
           <Button asChild size="lg" variant="outline" className="rounded-2xl">
-            <a href={issueUrl} target="_blank" rel="noopener noreferrer">
+            <ContributeLink
+              href={issueUrl}
+              actionType="report_bug"
+              sourcePage={sourcePage}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Bug className="mr-2 size-4" />
               Report a bug
-            </a>
+            </ContributeLink>
           </Button>
         ) : null}
 
         {qaUrl ? (
           <Button asChild size="lg" variant="outline" className="rounded-2xl">
-            <a href={qaUrl} target="_blank" rel="noopener noreferrer">
+            <ContributeLink
+              href={qaUrl}
+              actionType="ask_question"
+              sourcePage={sourcePage}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <HelpCircle className="mr-2 size-4" />
               Ask a question
-            </a>
+            </ContributeLink>
           </Button>
         ) : null}
       </div>
@@ -103,22 +129,26 @@ export function HomeContribute() {
         <div className="mx-auto mt-5 flex max-w-2xl flex-col items-center justify-center gap-3 text-center sm:flex-row sm:flex-wrap">
           {hasSuggestionsEmail ? (
             <Button asChild variant="ghost" className="rounded-2xl">
-              <a
+              <ContributeLink
                 href={`mailto:${siteConfig.suggestionsEmail}?subject=${encodeURIComponent(`${siteConfig.name} suggestion`)}`}
+                actionType="email_suggestion"
+                sourcePage={sourcePage}
               >
                 Email a suggestion
-              </a>
+              </ContributeLink>
             </Button>
           ) : null}
           {hasSuggestionsForm ? (
             <Button asChild variant="ghost" className="rounded-2xl">
-              <a
+              <ContributeLink
                 href={siteConfig.suggestionsFormUrl}
+                actionType="suggestion_form"
+                sourcePage={sourcePage}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Suggestion form
-              </a>
+              </ContributeLink>
             </Button>
           ) : null}
           {!repoBase ? (

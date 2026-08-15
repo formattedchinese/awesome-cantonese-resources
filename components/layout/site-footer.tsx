@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { ContributeLink } from "@/components/analytics/contribute-link";
 import { siteConfig } from "@/lib/site-config";
 import { resourcesListHref } from "@/lib/resource-routes";
 
@@ -23,14 +24,16 @@ export function SiteFooter() {
             </div>
             <div className="flex flex-wrap gap-x-4 gap-y-2 pt-1 text-sm">
               {siteConfig.githubRepoUrl ? (
-                <a
+                <ContributeLink
                   href={siteConfig.githubRepoUrl}
+                  actionType="github_repo"
+                  sourcePage="/footer"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   GitHub repository
-                </a>
+                </ContributeLink>
               ) : null}
               <a
                 href={siteConfig.siteUrl}

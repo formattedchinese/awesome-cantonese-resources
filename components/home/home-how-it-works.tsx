@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
+import { CtaLink } from "@/components/analytics/cta-link";
 import { getResourceById } from "@/lib/data";
-import { Button } from "@/components/ui/button";
+import { getLinkDomain, trackResourceClick } from "@/lib/analytics";
 
 function Demo() {
   const reduceMotion = useReducedMotion();
@@ -66,6 +66,20 @@ function Demo() {
             href={row.href}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              const resource = getResourceById(row.id);
+              if (!resource) return;
+              trackResourceClick({
+                resource_id: resource.id,
+                resource_name: resource.name,
+                resource_category: resource.category,
+                resource_level: resource.levels.join(","),
+                link_domain: getLinkDomain(resource.url),
+                source_page: "/",
+                source_context: "home_demo",
+                position_index: itemIds.indexOf(row.id as (typeof itemIds)[number]),
+              });
+            }}
             className="group flex items-center justify-between rounded-xl border border-border/70 bg-background/70 px-4 py-3 outline-none transition-colors hover:bg-muted/30 focus-visible:ring-[3px] focus-visible:ring-ring/50"
           >
             <div className="min-w-0">
@@ -143,12 +157,23 @@ export function HomeHowItWorks() {
             </li>
           </ul>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Button asChild className="w-fit rounded-2xl">
-              <Link href="/resources">Explore resources</Link>
-            </Button>
-            <Button asChild variant="outline" className="w-fit rounded-2xl">
-              <a href="#help">Help improve the list</a>
-            </Button>
+            <CtaLink
+              href="/resources"
+              ctaLabel="explore_resources"
+              ctaLocation="how_it_works"
+              className="w-fit rounded-2xl"
+            >
+              Explore resources
+            </CtaLink>
+            <CtaLink
+              href="#help"
+              ctaLabel="help_improve"
+              ctaLocation="how_it_works"
+              variant="outline"
+              className="w-fit rounded-2xl"
+            >
+              Help improve the list
+            </CtaLink>
           </div>
         </div>
 

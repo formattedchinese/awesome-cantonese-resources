@@ -1,7 +1,5 @@
-import Link from "next/link";
-
 import { CollectionCard } from "@/components/collections/collection-card";
-import { Button } from "@/components/ui/button";
+import { CtaLink } from "@/components/analytics/cta-link";
 import { getCollectionsSorted } from "@/lib/data";
 
 export default function CollectionsPage() {
@@ -18,9 +16,15 @@ export default function CollectionsPage() {
             in a new tab.
           </p>
         </div>
-        <Button asChild variant="outline" className="w-fit rounded-2xl">
-          <Link href="/resources">Browse all resources</Link>
-        </Button>
+        <CtaLink
+          href="/resources"
+          ctaLabel="browse_all_resources"
+          ctaLocation="collections_header"
+          variant="outline"
+          className="w-fit rounded-2xl"
+        >
+          Browse all resources
+        </CtaLink>
       </header>
 
       <div className="grid gap-4 sm:grid-cols-2">

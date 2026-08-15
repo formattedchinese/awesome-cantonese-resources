@@ -1,10 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 
+import { CtaLink } from "@/components/analytics/cta-link";
 import { siteConfig } from "@/lib/site-config";
-import { Button } from "@/components/ui/button";
 import { HomeHeroGraphic } from "@/components/home/home-hero-graphic";
 
 const fade = {
@@ -62,12 +61,25 @@ export function HomeHero() {
             animate="show"
             className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
-            <Button asChild size="lg" className="rounded-2xl">
-              <Link href="/resources">Browse the catalog</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-2xl">
-              <a href="#start-here">Start here</a>
-            </Button>
+            <CtaLink
+              href="/resources"
+              ctaLabel="browse_catalog"
+              ctaLocation="hero"
+              size="lg"
+              className="rounded-2xl"
+            >
+              Browse the catalog
+            </CtaLink>
+            <CtaLink
+              href="#start-here"
+              ctaLabel="start_here"
+              ctaLocation="hero"
+              variant="outline"
+              size="lg"
+              className="rounded-2xl"
+            >
+              Start here
+            </CtaLink>
           </motion.div>
         </div>
 

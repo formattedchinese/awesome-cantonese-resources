@@ -9,6 +9,7 @@ import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { useTheme } from "next-themes";
 import { siteConfig } from "@/lib/site-config";
 import { githubRepoBaseUrl } from "@/lib/github-links";
+import { getLinkDomain, trackContributeClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -80,6 +81,16 @@ function GithubRepoButton({
     };
   }, [repoBase]);
 
+  const handleGithubClick = () => {
+    if (!repoBase) return;
+    trackContributeClick({
+      action_type: "github_repo",
+      source_page: "/header",
+      link_domain: getLinkDomain(repoBase),
+    });
+    onNavigate?.();
+  };
+
   if (!repoBase) return null;
 
   const showStars = typeof stars === "number" && stars >= STAR_THRESHOLD;
@@ -89,7 +100,7 @@ function GithubRepoButton({
       href={repoBase}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={onNavigate}
+      onClick={handleGithubClick}
       className={cn(
         "inline-flex items-center gap-2 rounded-2xl border border-border/80 bg-background/60 px-3 py-2 text-sm font-medium text-muted-foreground shadow-sm transition-colors hover:bg-muted hover:text-foreground",
         "outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50",
@@ -233,7 +244,16 @@ export function SiteHeader() {
                     href={githubRepoBaseUrl(siteConfig.githubRepoUrl) ?? undefined}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => setMobileOpen(false)}
+                    onClick={() => {
+                      trackContributeClick({
+                        action_type: "github_repo",
+                        source_page: "/header",
+                        link_domain: getLinkDomain(
+                          githubRepoBaseUrl(siteConfig.githubRepoUrl) ?? siteConfig.githubRepoUrl,
+                        ),
+                      });
+                      setMobileOpen(false);
+                    }}
                     className="flex items-center gap-3 rounded-2xl px-4 py-3 text-base font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   >
                     <GitHubMark className="size-4 shrink-0" />

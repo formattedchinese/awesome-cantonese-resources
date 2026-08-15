@@ -1,5 +1,6 @@
 import { MessageSquare, Star } from "lucide-react";
 
+import { RateResourceCardLink } from "@/components/resources/rate-resource-card-link";
 import type { Resource } from "@/types";
 import type { RatingEntry } from "@/lib/data";
 import { formatCategoryLabel } from "@/lib/format-category";
@@ -48,10 +49,11 @@ export function RateResourceCard({
   }
 
   return (
-    <a
+    <RateResourceCardLink
+      resource={resource}
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      discussionUrl={discussionUrl}
+      rating={rating}
       className="group block h-full rounded-2xl outline-none transition-shadow focus-visible:ring-[3px] focus-visible:ring-ring/50"
     >
       <Card className="h-full border-border/80 transition-colors group-hover:border-primary/40 group-hover:bg-muted/20">
@@ -83,6 +85,6 @@ export function RateResourceCard({
           )}
         </CardHeader>
       </Card>
-    </a>
+    </RateResourceCardLink>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { memo, useMemo, useRef, useState } from "react";
 import { Filter, Search } from "lucide-react";
 
 import type { Category, Cost, Level, Platform, Resource } from "@/types";
@@ -11,7 +11,14 @@ import {
   RESOURCE_PLATFORM_OPTIONS,
 } from "@/lib/data";
 import { formatCategoryLabel } from "@/lib/format-category";
-import { RateResourceCard } from "@/components/resources/rate-resource-card";
+import type {
+  ResourceCostFilter,
+  ResourcePlatformFilter,
+} from "@/lib/filter-resources";
+import { trackFilterClear, type FilterSource } from "@/lib/analytics";
+import { useDeferredResourceFilter } from "@/hooks/use-deferred-resource-filter";
+import { useExplorerAnalytics } from "@/hooks/use-explorer-analytics";
+import { RateResourceResultsGrid } from "@/components/resources/rate-resource-results-grid";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -32,8 +39,8 @@ import {
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 
-type CostFilter = "all" | Exclude<Cost, null> | "not_applicable";
-type PlatformFilter = "all" | Platform;
+type CostFilter = ResourceCostFilter;
+type PlatformFilter = ResourcePlatformFilter;
 
 type RateResourcesExplorerProps = {
   resources: Resource[];
@@ -47,13 +54,7 @@ type RateResourcesExplorerProps = {
   initialPlatform?: Platform | null;
 };
 
-function resourceMatchesLevel(resource: Resource, level: Level | "all"): boolean {
-  if (level === "all") return true;
-  const lv = resource.levels;
-  return lv.includes(level) || lv.includes("All Levels");
-}
-
-function FilterFields({
+const FilterFields = memo(function FilterFields({
   query,
   setQuery,
   category,
@@ -66,6 +67,7 @@ function FilterFields({
   setPlatform,
   categories,
   idPrefix,
+  onFilterInteraction,
 }: {
   query: string;
   setQuery: (v: string) => void;
@@ -79,7 +81,11 @@ function FilterFields({
   setPlatform: (v: PlatformFilter) => void;
   categories: Category[];
   idPrefix: string;
+  onFilterInteraction?: (source: FilterSource) => void;
 }) {
+  const filterSource: FilterSource = idPrefix === "mobile" ? "mobile" : "desktop";
+  const markInteraction = () => onFilterInteraction?.(filterSource);
+
   return (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -89,7 +95,10 @@ function FilterFields({
           <Input
             id={`${idPrefix}-search`}
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              markInteraction();
+              setQuery(e.target.value);
+            }}
             placeholder="Name, description, or tags…"
             className="rounded-2xl pl-9"
           />
@@ -99,7 +108,10 @@ function FilterFields({
         <Label htmlFor={`${idPrefix}-category`}>Category</Label>
         <Select
           value={category}
-          onValueChange={(v) => setCategory(v as "all" | Category)}
+          onValueChange={(v) => {
+            markInteraction();
+            setCategory(v as "all" | Category);
+          }}
         >
           <SelectTrigger id={`${idPrefix}-category`} className="w-full rounded-2xl">
             <SelectValue placeholder="Category" />
@@ -118,7 +130,10 @@ function FilterFields({
         <Label htmlFor={`${idPrefix}-level`}>Level</Label>
         <Select
           value={level}
-          onValueChange={(v) => setLevel(v as "all" | Level)}
+          onValueChange={(v) => {
+            markInteraction();
+            setLevel(v as "all" | Level);
+          }}
         >
           <SelectTrigger id={`${idPrefix}-level`} className="w-full rounded-2xl">
             <SelectValue placeholder="Level" />
@@ -135,7 +150,13 @@ function FilterFields({
       </div>
       <div className="space-y-2">
         <Label htmlFor={`${idPrefix}-cost`}>Cost</Label>
-        <Select value={cost} onValueChange={(v) => setCost(v as CostFilter)}>
+        <Select
+          value={cost}
+          onValueChange={(v) => {
+            markInteraction();
+            setCost(v as CostFilter);
+          }}
+        >
           <SelectTrigger id={`${idPrefix}-cost`} className="w-full rounded-2xl">
             <SelectValue placeholder="Cost" />
           </SelectTrigger>
@@ -154,7 +175,10 @@ function FilterFields({
         <Label htmlFor={`${idPrefix}-platform`}>Platform</Label>
         <Select
           value={platform}
-          onValueChange={(v) => setPlatform(v as PlatformFilter)}
+          onValueChange={(v) => {
+            markInteraction();
+            setPlatform(v as PlatformFilter);
+          }}
         >
           <SelectTrigger id={`${idPrefix}-platform`} className="w-full rounded-2xl">
             <SelectValue placeholder="Platform" />
@@ -171,7 +195,7 @@ function FilterFields({
       </div>
     </div>
   );
-}
+});
 
 export function RateResourcesExplorer({
   resources,
@@ -194,8 +218,15 @@ export function RateResourcesExplorer({
     initialPlatform ?? "all",
   );
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const filterSourceRef = useRef<FilterSource>("desktop");
 
-  const clearFilters = () => {
+  const handleFilterInteraction = (source: FilterSource) => {
+    filterSourceRef.current = source;
+  };
+
+  const clearFilters = (source: FilterSource) => {
+    filterSourceRef.current = source;
+    trackFilterClear({ page_context: "rate_resources", filter_source: source });
     setQuery("");
     setCategory("all");
     setLevel("all");
@@ -203,26 +234,22 @@ export function RateResourcesExplorer({
     setPlatform("all");
   };
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return resources.filter((r) => {
-      if (category !== "all" && r.category !== category) return false;
-      if (!resourceMatchesLevel(r, level)) return false;
-      if (cost !== "all") {
-        if (cost === "not_applicable") {
-          if (r.cost !== null) return false;
-        } else {
-          if (r.cost !== cost) return false;
-        }
-      }
-      if (platform !== "all" && !r.platforms.includes(platform)) return false;
-      if (!q) return true;
-      const haystack = [r.name, r.description, r.tags.join(" ")]
-        .join(" ")
-        .toLowerCase();
-      return haystack.includes(q);
-    });
-  }, [resources, query, category, level, cost, platform]);
+  const filters = useMemo(
+    () => ({ query, category, level, cost, platform }),
+    [query, category, level, cost, platform],
+  );
+  const { filtered, isFiltering } = useDeferredResourceFilter(resources, filters);
+
+  useExplorerAnalytics({
+    pageContext: "rate_resources",
+    query,
+    category,
+    level,
+    cost,
+    platform,
+    resultCount: filtered.length,
+    filterSourceRef,
+  });
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
@@ -254,7 +281,7 @@ export function RateResourcesExplorer({
                 variant="ghost"
                 size="sm"
                 className="h-8 rounded-2xl px-3"
-                onClick={clearFilters}
+                onClick={() => clearFilters("desktop")}
               >
                 Clear
               </Button>
@@ -272,6 +299,7 @@ export function RateResourcesExplorer({
               setPlatform={setPlatform}
               categories={categories}
               idPrefix="desktop"
+              onFilterInteraction={handleFilterInteraction}
             />
           </div>
         </aside>
@@ -314,6 +342,7 @@ export function RateResourcesExplorer({
                     setPlatform={setPlatform}
                     categories={categories}
                     idPrefix="mobile"
+                    onFilterInteraction={handleFilterInteraction}
                   />
                 </div>
                 <SheetFooter className="px-5 pb-5 pt-4 border-t border-border/60">
@@ -321,7 +350,7 @@ export function RateResourcesExplorer({
                     type="button"
                     variant="outline"
                     className="w-full rounded-2xl"
-                    onClick={clearFilters}
+                    onClick={() => clearFilters("mobile")}
                   >
                     Clear filters
                   </Button>
@@ -330,24 +359,14 @@ export function RateResourcesExplorer({
             </Sheet>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {filtered.map((r) => (
-              <RateResourceCard
-                key={r.id}
-                resource={r}
-                discussionUrl={discussionUrls[r.id] ?? null}
-                rating={ratings[r.id]}
-                fallbackCategoryUrl={fallbackCategoryUrl}
-              />
-            ))}
-          </div>
-
-          {filtered.length === 0 ? (
-            <p className="rounded-2xl border border-dashed border-border px-4 py-10 text-center text-sm text-muted-foreground">
-              No resources match these filters. Try clearing search, widening the
-              level, or choosing &quot;All categories&quot;.
-            </p>
-          ) : null}
+          <RateResourceResultsGrid
+            resources={filtered}
+            totalCount={resources.length}
+            discussionUrls={discussionUrls}
+            ratings={ratings}
+            fallbackCategoryUrl={fallbackCategoryUrl}
+            isFiltering={isFiltering}
+          />
         </div>
       </div>
     </div>

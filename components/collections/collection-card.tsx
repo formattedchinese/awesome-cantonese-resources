@@ -1,6 +1,7 @@
-import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
+import { CollectionCardLink } from "@/components/collections/collection-card-link";
+import type { CollectionClickSource } from "@/lib/analytics";
 import type { Collection } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -13,6 +14,7 @@ import {
 
 type CollectionCardProps = {
   collection: Collection;
+  clickSource?: CollectionClickSource;
 };
 
 function kindLabel(kind: Collection["kind"]): string {
@@ -20,7 +22,10 @@ function kindLabel(kind: Collection["kind"]): string {
   return "Curated list";
 }
 
-export function CollectionCard({ collection }: CollectionCardProps) {
+export function CollectionCard({
+  collection,
+  clickSource = "collections_list",
+}: CollectionCardProps) {
   const levels = collection.target_level
     ? Array.isArray(collection.target_level)
       ? collection.target_level.join(" · ")
@@ -28,7 +33,11 @@ export function CollectionCard({ collection }: CollectionCardProps) {
     : null;
 
   return (
-    <Link href={`/collections/${collection.id}`} className="group block h-full">
+    <CollectionCardLink
+      collection={collection}
+      clickSource={clickSource}
+      className="group block h-full"
+    >
       <Card className="h-full border-border/80 transition-colors group-hover:border-primary/40 group-hover:bg-muted/20">
         <CardHeader className="space-y-2">
           <div className="flex flex-wrap items-center gap-2">
@@ -58,6 +67,6 @@ export function CollectionCard({ collection }: CollectionCardProps) {
           View collection
         </CardContent>
       </Card>
-    </Link>
+    </CollectionCardLink>
   );
 }

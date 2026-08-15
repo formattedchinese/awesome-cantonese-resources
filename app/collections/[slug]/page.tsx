@@ -73,8 +73,17 @@ export default async function CollectionDetailPage({ params }: PageProps) {
           tab.
         </p>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {data.resources.map((r) => (
-            <ResourceCard key={r.id} resource={r} />
+          {data.resources.map((r, i) => (
+            <ResourceCard
+              key={r.id}
+              resource={r}
+              analytics={{
+                sourceContext: "collection",
+                sourcePage: `/collections/${slug}`,
+                collectionId: slug,
+                positionIndex: i,
+              }}
+            />
           ))}
         </div>
       </section>

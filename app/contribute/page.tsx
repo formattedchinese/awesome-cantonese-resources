@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Bug, MessageSquarePlus, Star, HelpCircle, GitPullRequest } from "lucide-react";
 
+import { ContributeLink } from "@/components/analytics/contribute-link";
+import type { ContributeActionType } from "@/lib/analytics";
 import { siteConfig } from "@/lib/site-config";
 import {
   githubDiscussionsCategoryUrl,
@@ -21,6 +23,7 @@ type ContributeOption = {
   description: string;
   cta: string;
   href: string | null;
+  actionType: ContributeActionType;
   variant?: "default" | "outline";
 };
 
@@ -55,6 +58,7 @@ export default function ContributePage() {
         "Know a great app, course, creator, book, or tool for learning Cantonese that isn't listed? Share it with the community in our GitHub Discussions.",
       cta: "Suggest a resource",
       href: suggestUrl,
+      actionType: "suggest_resource",
       variant: "default",
     },
     {
@@ -64,6 +68,7 @@ export default function ContributePage() {
         "Spotted a broken link, wrong information, or a web app issue? Open an issue and we'll get it fixed.",
       cta: "Open an issue",
       href: issueUrl,
+      actionType: "report_bug",
       variant: "outline",
     },
     {
@@ -73,6 +78,7 @@ export default function ContributePage() {
         "Used one of the resources in the directory? Leave a reaction or a comment in the Resource Ratings discussion to help other learners decide.",
       cta: "Go to Resource Ratings",
       href: ratingsUrl,
+      actionType: "rate_review",
       variant: "outline",
     },
     {
@@ -82,9 +88,12 @@ export default function ContributePage() {
         "Have a question about the project or about learning Cantonese? Start a thread in the Q&A discussion and the community will help.",
       cta: "Ask a question",
       href: qaUrl,
+      actionType: "ask_question",
       variant: "outline",
     },
   ];
+
+  const sourcePage = "/contribute";
 
   return (
     <main className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20">
@@ -120,9 +129,15 @@ export default function ContributePage() {
                 variant={option.variant ?? "outline"}
                 className="rounded-2xl self-start"
               >
-                <a href={option.href} target="_blank" rel="noopener noreferrer">
+                <ContributeLink
+                  href={option.href}
+                  actionType={option.actionType}
+                  sourcePage={sourcePage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {option.cta}
-                </a>
+                </ContributeLink>
               </Button>
             </div>
           );
@@ -148,9 +163,15 @@ export default function ContributePage() {
             workflows, and pull request guidelines.
           </p>
           <Button asChild variant="outline" size="sm" className="mt-5 rounded-2xl">
-            <a href={contributionGuideUrl} target="_blank" rel="noopener noreferrer">
+            <ContributeLink
+              href={contributionGuideUrl}
+              actionType="contribution_guide"
+              sourcePage={sourcePage}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Read the contribution guide
-            </a>
+            </ContributeLink>
           </Button>
         </div>
       )}

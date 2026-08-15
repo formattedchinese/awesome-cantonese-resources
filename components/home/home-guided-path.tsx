@@ -1,7 +1,5 @@
-import Link from "next/link";
-
 import type { Collection } from "@/types";
-import { Button } from "@/components/ui/button";
+import { CtaLink } from "@/components/analytics/cta-link";
 import { CollectionCard } from "@/components/collections/collection-card";
 
 type HomeGuidedPathProps = {
@@ -28,14 +26,20 @@ export function HomeGuidedPath({ collections }: HomeGuidedPathProps) {
             ordered path you can follow today.
           </p>
         </div>
-        <Button asChild variant="outline" className="w-fit rounded-2xl">
-          <Link href="/collections">All collections</Link>
-        </Button>
+        <CtaLink
+          href="/collections"
+          ctaLabel="all_collections"
+          ctaLocation="guided_path"
+          variant="outline"
+          className="w-fit rounded-2xl"
+        >
+          All collections
+        </CtaLink>
       </div>
 
       <div className="hidden gap-4 sm:grid sm:grid-cols-3">
         {collections.map((c) => (
-          <CollectionCard key={c.id} collection={c} />
+          <CollectionCard key={c.id} collection={c} clickSource="home_start_here" />
         ))}
       </div>
 
@@ -46,7 +50,7 @@ export function HomeGuidedPath({ collections }: HomeGuidedPathProps) {
               key={c.id}
               className="w-[min(20rem,85%)] shrink-0 snap-start scroll-ms-4 first:ms-0"
             >
-              <CollectionCard collection={c} />
+              <CollectionCard collection={c} clickSource="home_start_here" />
             </div>
           ))}
         </div>

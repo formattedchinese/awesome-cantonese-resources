@@ -1,5 +1,9 @@
 import { ExternalLink } from "lucide-react";
 
+import {
+  ResourceCardLink,
+  type ResourceCardAnalytics,
+} from "@/components/resources/resource-card-link";
 import type { Resource } from "@/types";
 import { formatCategoryLabel } from "@/lib/format-category";
 import { Badge } from "@/components/ui/badge";
@@ -12,14 +16,14 @@ import {
 
 type ResourceCardProps = {
   resource: Resource;
+  analytics: ResourceCardAnalytics;
 };
 
-export function ResourceCard({ resource }: ResourceCardProps) {
+export function ResourceCard({ resource, analytics }: ResourceCardProps) {
   return (
-    <a
-      href={resource.url}
-      target="_blank"
-      rel="noopener noreferrer"
+    <ResourceCardLink
+      resource={resource}
+      analytics={analytics}
       className="group block h-full rounded-2xl outline-none transition-shadow focus-visible:ring-[3px] focus-visible:ring-ring/50"
     >
       <Card className="h-full border-border/80 transition-colors group-hover:border-primary/40 group-hover:bg-muted/20">
@@ -41,6 +45,8 @@ export function ResourceCard({ resource }: ResourceCardProps) {
           </CardDescription>
         </CardHeader>
       </Card>
-    </a>
+    </ResourceCardLink>
   );
 }
+
+export type { ResourceCardAnalytics };
