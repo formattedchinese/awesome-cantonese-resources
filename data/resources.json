@@ -2689,5 +2689,18 @@
     "cost": "Freemium",
     "platforms": ["Web", "iOS", "Android"],
     "features": ["Audio", "Flashcards"]
+  },
+  {
+    "id": "chineseskill-cantonese",
+    "name": "ChineseSkill",
+    "category": "App",
+    "description": "Duolingo-style app for HK Cantonese: path lessons, dialogues, SRS, Jyutping, and speaking.",
+    "url": "https://www.chineseskill.com",
+    "levels": ["Beginner"],
+    "tags": ["learning", "course", "hk", "jyutping", "vocabulary"],
+    "related_ids": [],
+    "cost": "Freemium",
+    "platforms": ["Web", "iOS", "Android"],
+    "features": ["Jyutping", "Audio", "Flashcards", "Example sentences"]
   }
 ]

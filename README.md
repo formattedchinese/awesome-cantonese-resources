@@ -150,6 +150,7 @@ Universities, private centres, and SCOLAR-funded vocational programmes for learn
 - **[CanTONEse](https://apps.apple.com/us/app/cantonese/id1546692785)** — Interactive lessons that emphasize the general difference between the 6 tones.
 - **[Cantonese Cracker](https://apps.apple.com/hk/app/cantonese-cracker/id6446240589)** — To master the listening & speaking skills of Cantonese for daily social communication and their needs.
 - **[Cantonese.ai — WhatsApp speech-to-text](https://cantonese.ai/)** — WhatsApp plugin for Cantonese speech-to-text (related repos on GitHub).
+- **[ChineseSkill](https://www.chineseskill.com)** — Duolingo-style app for HK Cantonese: path lessons, dialogues, SRS, Jyutping, and speaking.
 - **[Drops Cantonese](https://languagedrops.com/language/learn-cantonese)** — Vocabulary-focused Cantonese lessons in the Drops app.
 - **[Duolingo (Mandarin to Cantonese)](https://www.duolingo.com/course/zh-HK/zh/Learn-Chinese%20Cantonese)** — Duolingo path for learners with Mandarin background moving into Cantonese.
 - **[Hauyu](https://www.hauyulearn.com/)** — A website to help learners read texts in Cantonese and practice vocabulary.
