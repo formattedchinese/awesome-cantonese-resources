@@ -335,6 +335,18 @@
     },
     "votes": 0
   },
+  "canto-ai": {
+    "avg_stars": 0,
+    "score": 0,
+    "stars": {
+      "CONFUSED": 0,
+      "HEART": 0,
+      "HOORAY": 0,
+      "THUMBS_DOWN": 0,
+      "THUMBS_UP": 0
+    },
+    "votes": 0
+  },
   "canto-numbers": {
     "avg_stars": 0,
     "score": 0,
@@ -479,6 +491,18 @@
     },
     "votes": 0
   },
+  "cantonese-literature-spreadsheet": {
+    "avg_stars": 0,
+    "score": 0,
+    "stars": {
+      "CONFUSED": 0,
+      "HEART": 0,
+      "HOORAY": 0,
+      "THUMBS_DOWN": 0,
+      "THUMBS_UP": 0
+    },
+    "votes": 0
+  },
   "cantonese-plus": {
     "avg_stars": 0,
     "score": 0,
@@ -539,6 +563,18 @@
     },
     "votes": 1
   },
+  "caretaker-phrasebook-cantonese": {
+    "avg_stars": 0,
+    "score": 0,
+    "stars": {
+      "CONFUSED": 0,
+      "HEART": 0,
+      "HOORAY": 0,
+      "THUMBS_DOWN": 0,
+      "THUMBS_UP": 0
+    },
+    "votes": 0
+  },
   "cc-canto": {
     "avg_stars": 0,
     "score": 0,
@@ -574,6 +610,18 @@
       "THUMBS_UP": 0
     },
     "votes": 0
+  },
+  "chineseskill-cantonese": {
+    "avg_stars": 4,
+    "score": 2.772588722239781,
+    "stars": {
+      "CONFUSED": 0,
+      "HEART": 1,
+      "HOORAY": 0,
+      "THUMBS_DOWN": 0,
+      "THUMBS_UP": 0
+    },
+    "votes": 1
   },
   "chinvocab": {
     "avg_stars": 5,
@@ -1427,6 +1475,18 @@
     },
     "votes": 0
   },
+  "ling-app-cantonese": {
+    "avg_stars": 0,
+    "score": 0,
+    "stars": {
+      "CONFUSED": 0,
+      "HEART": 0,
+      "HOORAY": 0,
+      "THUMBS_DOWN": 0,
+      "THUMBS_UP": 0
+    },
+    "votes": 0
+  },
   "lingora-cantonese": {
     "avg_stars": 4,
     "score": 2.772588722239781,
@@ -1452,6 +1512,18 @@
     "votes": 0
   },
   "lingq-mini-stories-cantonese": {
+    "avg_stars": 0,
+    "score": 0,
+    "stars": {
+      "CONFUSED": 0,
+      "HEART": 0,
+      "HOORAY": 0,
+      "THUMBS_DOWN": 0,
+      "THUMBS_UP": 0
+    },
+    "votes": 0
+  },
+  "lyrics-decode": {
     "avg_stars": 0,
     "score": 0,
     "stars": {
