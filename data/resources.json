@@ -2676,5 +2676,18 @@
     "cost": "Free",
     "platforms": ["GoogleDocs"],
     "features": []
+  },
+  {
+    "id": "ling-app-cantonese",
+    "name": "Ling App",
+    "category": "App",
+    "description": "Gamified Cantonese app with native audio, flashcards, dialog practice, and voice games.",
+    "url": "https://ling-app.com/learn-language/cantonese/",
+    "levels": ["Beginner"],
+    "tags": ["learning", "vocabulary", "audio"],
+    "related_ids": [],
+    "cost": "Freemium",
+    "platforms": ["Web", "iOS", "Android"],
+    "features": ["Audio", "Flashcards"]
   }
 ]

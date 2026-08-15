@@ -154,6 +154,7 @@ Universities, private centres, and SCOLAR-funded vocational programmes for learn
 - **[Duolingo (Mandarin to Cantonese)](https://www.duolingo.com/course/zh-HK/zh/Learn-Chinese%20Cantonese)** — Duolingo path for learners with Mandarin background moving into Cantonese.
 - **[Hauyu](https://www.hauyulearn.com/)** — A website to help learners read texts in Cantonese and practice vocabulary.
 - **[Jyut Dictionary](https://jyutdictionary.com/)** — Comprehensive Cantonese dictionary app.
+- **[Ling App](https://ling-app.com/learn-language/cantonese/)** — Gamified Cantonese app with native audio, flashcards, dialog practice, and voice games.
 - **[Lingora](https://lingora.org/cantonese/)** — 500 sentence-centric Cantonese lessons that include dynamic practice and grammar reinforcement.
 - **[LingQ Cantonese](https://www.lingq.com/en/learn-cantonese-online/)** — Reading- and listening-based Cantonese course on LingQ.
 - **[Miteiru](https://miteiru.hocky.id/)** — An open-source video player for learning Cantonese.
