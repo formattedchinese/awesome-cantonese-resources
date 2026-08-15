@@ -2715,5 +2715,18 @@
     "cost": "Free",
     "platforms": ["Web"],
     "features": ["Jyutping"]
+  },
+  {
+    "id": "canto-ai",
+    "name": "Canto AI",
+    "category": "App",
+    "description": "Colloquial Hong Kong Cantonese AI chat with Jyutping, audio, and English on every line.",
+    "url": "https://canto-ai.com/",
+    "levels": ["All Levels", "Beginner", "Intermediate", "Advanced"],
+    "tags": ["learning", "speaking", "conversation", "jyutping", "hk", "ai", "llm"],
+    "related_ids": [],
+    "cost": "Freemium",
+    "platforms": ["Web"],
+    "features": ["Jyutping", "Audio", "Conversation", "AI"]
   }
 ]

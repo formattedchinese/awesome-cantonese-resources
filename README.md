@@ -144,6 +144,7 @@ Universities, private centres, and SCOLAR-funded vocational programmes for learn
 <a id="category-app"></a>
 ## App
 
+- **[Canto AI](https://canto-ai.com/)** — Colloquial Hong Kong Cantonese AI chat with Jyutping, audio, and English on every line.
 - **[Canto Numbers](https://canto-numbers.netlify.app)** — Web app for practicing Cantonese numbers.
 - **[Cantone (Android)](https://play.google.com/store/apps/details?id=com.cantone.cantone&hl=en&gl=US)** — Android app for Cantonese learning.
 - **[Cantone (iOS)](https://apps.apple.com/us/app/cantone/id1602297692)** — iOS app for Cantonese learning.
